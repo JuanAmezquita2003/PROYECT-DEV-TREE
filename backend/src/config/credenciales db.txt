@@ -1,0 +1,35 @@
+name: root
+
+password : Juanes2003
+
+
+
+
+
+    const handle = slugify(req.body.handle, '')
+
+    const handleExist = await User.findOne({handle})
+    if (handleExist){
+
+        const error = new Error('Nombre de usuario no disponible')
+         return res.status(409).send({error : error.message})
+    }
+
+
+        user.handle = handle
+\
+
+
+
+
+handle: string
+
+
+
+    handle:{
+
+        type: String,
+        required: true,
+        trim : true,
+        unique: true
+    },
