@@ -1,11 +1,17 @@
 import express from 'express'
 import 'dotenv/config'
+import cors from 'cors'
 import router from './router'
 import { connectDB } from './config/db'
+import { corsConfig } from './config/cors'
 
 const app = express()
 
 connectDB()
+
+//CORS
+
+app.use(cors(corsConfig))
 //leer datos de formularios 
 
 app.use(express.json())
