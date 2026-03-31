@@ -15,7 +15,7 @@ export default function AuthLayout() {
         </div>
 
       </div>
-      <Toaster position='top-right'/>
+      <Toaster position='top-right' richColors/>
     </>
   )
 }
