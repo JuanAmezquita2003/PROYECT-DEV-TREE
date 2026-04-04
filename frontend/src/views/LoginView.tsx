@@ -5,7 +5,6 @@ import { isAxiosError } from 'axios'
 import ErrorMessage from '../components/ErrorMessage'
 import type { LoginForm } from '../types'
 import api from '../config/axios'
-// import type axios from 'axios'
 
 export default function LoginView() {
   const initialValues: LoginForm = {

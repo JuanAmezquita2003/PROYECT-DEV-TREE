@@ -5,3 +5,6 @@ POSTMAN
 MONGODB
 MONGOCOMPASS
 
+//SUBIDA DE ARCHIVOS
+cloudinary (almacena los archivos)
+fromidable (Hace que express pueda soportar la subida de archivos)

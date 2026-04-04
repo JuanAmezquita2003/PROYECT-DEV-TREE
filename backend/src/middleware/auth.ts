@@ -1,7 +1,14 @@
-import { Request, Response, NextFunction } from 'express';
+import type { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
-import User from '../models/User';
+import User, { IUser } from '../models/User';
 
+declare global {
+    namespace Express {
+        interface Request {
+            user?: IUser
+        }
+    }
+}
 export const authenticate = async (req: Request, res: Response, next: NextFunction) => {
     const bearer = req.headers.authorization
 
@@ -11,7 +18,6 @@ export const authenticate = async (req: Request, res: Response, next: NextFuncti
     }
 
     const [, token] = bearer.split(' ')
-
     if (!token) {
         const error = new Error('No Autorizado')
         return res.status(401).json({ error: error.message })
@@ -27,9 +33,11 @@ export const authenticate = async (req: Request, res: Response, next: NextFuncti
                 const error = new Error('El usuario no existe')
                 return res.status(404).json({ error: error.message })
             }
-            res.json(user)
+            req.user = user
+            next()
         }
     } catch (error) {
+        console.log('ERROR JWT:', error)
         res.status(500).json({ error: 'Token no valido' })
     }
 }
